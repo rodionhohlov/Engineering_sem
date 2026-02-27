@@ -1,14 +1,19 @@
 import RPi.GPIO as GPIO
-import time 
+import time
+
+LED_PIN = 26
+LIGHT_SENSOR_PIN = 18  
 
 GPIO.setmode(GPIO.BCM)
+GPIO.setup(LED_PIN, GPIO.OUT)
 
-GPIO.setup(26, GPIO.OUT)
-GPIO.setup(13, GPIO.IN)
-i = 0
+GPIO.setup(LIGHT_SENSOR_PIN, GPIO.IN)
 
-while 1:
-    if GPIO.input(13):
-        i = not i
-        GPIO.output(26, i)
-        time.sleep(0.2)
+while True:
+    if GPIO.input(DIGITAL_SENSOR_PIN) == GPIO.LOW:
+        GPIO.output(LED_PIN, GPIO.HIGH)  
+        
+    else:
+        GPIO.output(LED_PIN, GPIO.LOW)   
+    
+    time.sleep(0.2)  
